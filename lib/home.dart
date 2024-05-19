@@ -108,68 +108,87 @@ class _HomePageState extends State<HomePage> {
   Widget _buildPostCard(Post post, String userPseudo) {
     bool isCurrentUserPost = post.idUser == widget.user.id;
 
-    return Card(
-      margin: const EdgeInsets.all(10),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Posted by: $userPseudo',
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 5),
-            Text('Date: ${post.date}'),
-            const SizedBox(height: 5),
-            Text('Description: ${post.description}'),
-            if (post.picture != null && post.picture!.isNotEmpty)
-              SizedBox(
-                height: 200,
-                child: Image.network(post.picture!),
-              ),
-            // Nouvelle section pour les commentaires
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // Icône de commentaire
-                IconButton(
-                  icon: const Icon(Icons.comment),
-                  onPressed: () {
-                    // Redirection vers la page des commentaires
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ViewPostCommentPage(post: post, user: widget.user,),
-                      ),
-                    );
-                  },
-                ),
-                // Nombre total de commentaires
-                Text(
-                  'Comments: ${_commentCount(post.id!)}',
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            if (isCurrentUserPost)
+    return GestureDetector(
+      onTap: () {
+        // Redirection vers la page des commentaires
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ViewPostCommentPage(post: post, user: widget.user,),
+          ),
+        );
+      },
+      child: Card(
+        margin: const EdgeInsets.all(10),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ModifPostPage(post: post, user: widget.user,),
-                        ),
-                      );
-                    },
-                    child: const Text('Modifier'),
+                  Text(
+                    'Publié par : ',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    userPseudo,
                   ),
                 ],
               ),
-          ],
+              const SizedBox(height: 12),
+
+              Row(
+                children: [
+                  Text('Date: ', style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(post.date.toString().substring(0, 10)),
+                ],
+              ),
+              const SizedBox(height: 12),
+              Row(
+                children: [
+                  Text('Sujet : ', style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(' ${post.description}'),
+                ],
+              ),
+              const SizedBox(height: 12),
+              if (post.picture != null && post.picture!.isNotEmpty)
+                SizedBox(
+                  height: 200,
+                  child: Image.network(post.picture!),
+                ),
+              const SizedBox(height: 12),
+
+              // Nouvelle section pour les commentaires
+              Row(
+                children: [
+                    const Icon(Icons.comment),
+                  // Nombre total de commentaires
+                  Text(
+                    '${_commentCount(post.id!)}',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              if (isCurrentUserPost)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ModifPostPage(post: post, user: widget.user,),
+                          ),
+                        );
+                      },
+                      child: const Text('Modifier'),
+                    ),
+                  ],
+                ),
+            ],
+          ),
         ),
       ),
     );

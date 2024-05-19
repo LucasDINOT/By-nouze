@@ -4,7 +4,7 @@ import '../table/user.dart';
 class CustomBottomNavigationBar extends StatefulWidget {
   final User user;
 
-  const CustomBottomNavigationBar({super.key, required this.user});
+  const CustomBottomNavigationBar({required this.user});
 
   @override
   _CustomBottomNavigationBarState createState() => _CustomBottomNavigationBarState();
@@ -12,9 +12,6 @@ class CustomBottomNavigationBar extends StatefulWidget {
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   int _selectedIndex = 0;
-
-
-  get index => null;
 
   void _onItemTapped(int index) {
     setState(() {
@@ -38,35 +35,27 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: index.elementAt(_selectedIndex),
-      bottomNavigationBar: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-              color: Colors.white38, width: 1), // Add a border to the nav
+    return BottomNavigationBar(
+      selectedItemColor: Colors.amber,
+      unselectedItemColor: Colors.blue[500],
+      iconSize: 25,
+      elevation: 10,
+      currentIndex: _selectedIndex,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'Home',
         ),
-        child: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.post_add),
-              label: 'Post',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: 'Profil',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: const Color(0xFF7DBBD1),
-          unselectedItemColor: Colors.grey,
-          // Make inactive items grey
-          onTap: _onItemTapped,
+        BottomNavigationBarItem(
+          icon: Icon(Icons.post_add),
+          label: 'Post',
         ),
-      ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person),
+          label: 'Profil',
+        ),
+      ],
+      onTap: _onItemTapped,
     );
   }
 }
