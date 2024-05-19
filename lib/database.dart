@@ -10,13 +10,23 @@ class Mysql {
   Mysql();
 
   Future<MySqlConnection> getConnection() async {
-    var settings = new ConnectionSettings(
-      host: host,
-      port: port,
-      user: user,
-      password: password,
-      db: db
+    var settings = ConnectionSettings(
+        host: host,
+        port: port,
+        user: user,
+        password: password,
+        db: db
     );
-    return await MySqlConnection.connect(settings);
+    print(host);
+    print(user);
+    print(password);
+    print(db);
+    print(port);
+    try {
+      return await MySqlConnection.connect(settings);
+    } catch (e) {
+      print('Failed to connect to MySQL: $e');
+      rethrow;
+    }
   }
 }

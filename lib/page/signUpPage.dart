@@ -1,14 +1,18 @@
+import 'package:bynouze/page/signInPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import '../table/user.dart';
 import '../database.dart';
 import '../home.dart';
 
-class InscriptionPage extends StatefulWidget {
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
+
+  @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _SignUpPageState extends State<InscriptionPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController pseudoController = TextEditingController();
@@ -59,7 +63,7 @@ class _SignUpPageState extends State<InscriptionPage> {
     return Scaffold(
       appBar: AppBar(
         title:
-            Text("Inscription"),
+            const Text("Inscription"),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -72,11 +76,11 @@ class _SignUpPageState extends State<InscriptionPage> {
               height: 100.0,
             ),
           ),
-          SizedBox(height: 10.0), // Espacement entre l'image et le texte (ajustable)
+          const SizedBox(height: 10.0), // Espacement entre l'image et le texte (ajustable)
           Container(
             alignment: Alignment.center,
-            margin: EdgeInsets.symmetric(horizontal: 50.0), // Marge horizontale pour créer l'effet de bordure
-              child: Text(
+            margin: const EdgeInsets.symmetric(horizontal: 50.0), // Marge horizontale pour créer l'effet de bordure
+              child: const Text(
                 'Le forum pour les passionnés de la bière, par des passionnés de la bière',
                 style: TextStyle(
                   fontSize: 16,
@@ -84,9 +88,9 @@ class _SignUpPageState extends State<InscriptionPage> {
                 textAlign: TextAlign.center,
               ),
           ),
-          SizedBox(height: 50.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
+          const SizedBox(height: 50.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
+            margin: const EdgeInsets.symmetric(horizontal: 20.0),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.black),
               borderRadius: BorderRadius.circular(25.0), // Bords arrondis
@@ -95,7 +99,7 @@ class _SignUpPageState extends State<InscriptionPage> {
               children: [
                 TextFormField(
                   controller: emailController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.person),
                     border: InputBorder.none,
                     hintText: 'Adresse email',
@@ -104,9 +108,9 @@ class _SignUpPageState extends State<InscriptionPage> {
               ],
             ),
           ),
-          SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
+          const SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(25.0), // Bords arrondis
@@ -117,7 +121,7 @@ class _SignUpPageState extends State<InscriptionPage> {
                     controller: passwordController,
                     obscureText: !_passwordVisible, // Affiche/masque le mot de passe
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
+                      prefixIcon: const Icon(Icons.lock),
                       suffixIcon: IconButton(
                         icon: Icon(
                           _passwordVisible ? Icons.visibility : Icons.visibility_off,
@@ -136,9 +140,9 @@ class _SignUpPageState extends State<InscriptionPage> {
                 ],
               )
           ),
-          SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
+          const SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(25.0), // Bords arrondis
@@ -147,7 +151,7 @@ class _SignUpPageState extends State<InscriptionPage> {
                 children: [
                   TextFormField(
                     controller: pseudoController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.account_circle),
                       border: InputBorder.none,
                       hintText: 'Pseudo',
@@ -156,9 +160,9 @@ class _SignUpPageState extends State<InscriptionPage> {
                 ],
               )
           ),
-          SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
+          const SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(25.0), // Bords arrondis
@@ -167,7 +171,7 @@ class _SignUpPageState extends State<InscriptionPage> {
                 children: [
                   TextFormField(
                     controller: firstNameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.account_box),
                       border: InputBorder.none,
                       hintText: 'Prénom',
@@ -176,9 +180,9 @@ class _SignUpPageState extends State<InscriptionPage> {
                 ],
               )
           ),
-          SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
+          const SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(25.0), // Bords arrondis
@@ -187,7 +191,7 @@ class _SignUpPageState extends State<InscriptionPage> {
                 children: [
                   TextFormField(
                     controller: lastNameController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.account_box),
                       border: InputBorder.none,
                       hintText: 'Nom',
@@ -196,9 +200,9 @@ class _SignUpPageState extends State<InscriptionPage> {
                 ],
               )
           ),
-          SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
+          const SizedBox(height: 10.0), // Espacement entre le texte et le formulaire d'inscription (ajustable)
           Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              margin: const EdgeInsets.symmetric(horizontal: 20.0),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.black),
                 borderRadius: BorderRadius.circular(25.0), // Bords arrondis
@@ -210,7 +214,7 @@ class _SignUpPageState extends State<InscriptionPage> {
                     keyboardType: TextInputType.phone,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     maxLength: 10,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.phone),
                       border: InputBorder.none,
                       hintText: 'Téléphone',
@@ -220,7 +224,7 @@ class _SignUpPageState extends State<InscriptionPage> {
                 ],
               )
           ),
-          SizedBox(height: 50),
+          const SizedBox(height: 50),
           Center(
             child: SizedBox(
               width: 350,
@@ -231,24 +235,24 @@ class _SignUpPageState extends State<InscriptionPage> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25.0),
                   ),
-                  minimumSize: Size(10, 50),
+                  minimumSize: const Size(10, 50),
                 ),
                 onPressed: () {
                   _inscription(context);
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => InscriptionPage()),
+                    MaterialPageRoute(builder: (context) => const SignUpPage()),
                   );
                   // Action pour le deuxième bouton
                 },
 
-                child: Text('Inscription', style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w500)),
+                child: const Text('Inscription', style: TextStyle(fontSize: 32.0, fontWeight: FontWeight.w500)),
               ),
             ),
           ),// Ajoute un espace vertical entre les boutons
 
-          SizedBox(height: 40), // Ajoute un espace vertical entre les boutons
-          Center(
+          const SizedBox(height: 40), // Ajoute un espace vertical entre les boutons
+          const Center(
             child:
             Text('J\'ai déjà un compte ?'),
           ),
@@ -257,10 +261,10 @@ class _SignUpPageState extends State<InscriptionPage> {
               // Redirigez vers une autre page ici
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => (InscriptionPage())),
+                MaterialPageRoute(builder: (context) => (const SignInPage())),
               );
             },
-            child: Text(
+            child: const Text(
               'Connexion',
               textAlign: TextAlign.center,
               style: TextStyle(
@@ -270,44 +274,6 @@ class _SignUpPageState extends State<InscriptionPage> {
           ),
         ],
       ),
-
-
-          //   padding: EdgeInsets.all(16.0),
-          //   child: Column(
-          //     crossAxisAlignment: CrossAxisAlignment.start,
-          //     children: [
-          //       TextFormField(
-          //         controller: emailController,
-          //         decoration: InputDecoration(labelText: 'Email'),
-          //       ),
-          //       TextFormField(
-          //         controller: passwordController,
-          //         obscureText: true,
-          //         decoration: InputDecoration(labelText: 'Password'),
-          //       ),
-          //       TextFormField(
-          //         controller: pseudoController,
-          //         decoration: InputDecoration(labelText: 'Pseudo'),
-          //       ),
-          //       TextFormField(
-          //         controller: firstNameController,
-          //         decoration: InputDecoration(labelText: 'First Name'),
-          //       ),
-          //       TextFormField(
-          //         controller: lastNameController,
-          //         decoration: InputDecoration(labelText: 'Last Name'),
-          //       ),
-          //       TextFormField(
-          //         controller: phoneNumberController,
-          //         keyboardType: TextInputType.phone,
-          //         decoration: InputDecoration(labelText: 'Phone Number'),
-          //       ),
-
-          //     ],
-          //   ),
-          // ),
-
-
     );
   }
 }

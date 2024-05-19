@@ -9,6 +9,7 @@ class User {
   String profilePicture;
 
   User({
+    this.id,
     required this.email,
     required this.password,
     required this.pseudo,
@@ -18,16 +19,16 @@ class User {
     this.profilePicture = "",
   });
 
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'email': email,
-      'password': password,
-      'pseudo': pseudo,
-      'firstname': firstName,
-      'lastname': lastName,
-      'phoneNumber': phoneNumber,
-      'profilePicture': profilePicture,
-    };
-  }
+factory User.fromMap(Map<String, dynamic> map) {
+  return User (
+    id: map['id'],
+    email: map['email'],
+    password: map['password'],
+    pseudo: map['pseudo'],
+    firstName: map['firstname'],
+    lastName: map['lastname'],
+    phoneNumber: map['phoneNumber'],
+    profilePicture: map['profilePicture'],
+  );
+}
 }
